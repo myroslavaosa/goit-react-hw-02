@@ -8,7 +8,6 @@ function Options({ onGood, onNeutral, onBad, onReset }) {
         <button onClick={onGood}>Good</button>
         <button onClick={onNeutral}>Neutral</button>
         <button onClick={onBad}>Bad</button>
-        <button onClick={onReset}>Reset</button>
       </div>
     </div>
   );

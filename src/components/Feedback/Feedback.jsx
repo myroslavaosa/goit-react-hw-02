@@ -1,8 +1,6 @@
 import s from './Feedback.module.css';
 
-function Feedback({ counterGood, counterNeutral, counterBad }) {
-  const total = counterGood + counterNeutral + counterBad;
-  const positive = total > 0 ? ((counterGood + counterNeutral) / total * 100).toFixed(1) : 0;
+function Feedback({ total, positive, counterGood, counterNeutral, counterBad }) {
 
   return (
     <div className={s.feedback}>
