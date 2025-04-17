@@ -22,11 +22,7 @@ function App() {
     localStorage.setItem("counterBad", counterBad);
   }, [counterGood, counterNeutral, counterBad]);
 
-  // Check if any feedback was given
-  const feedbackGiven = counterGood > 0 || counterNeutral > 0 || counterBad > 0;
-
   const total = counterGood + counterNeutral + counterBad;
-
 
   const handleReset = () => {
     setCounterGood(0);
@@ -35,7 +31,7 @@ function App() {
   };
 
   const positive =
-    total > 0 ? Math.ceil(((counterGood + counterNeutral) / total) * 100) : 0;
+    total > 0 ? Math.ceil(((counterGood) / total) * 100) : 0;
 
   return (
     <div>
@@ -45,16 +41,19 @@ function App() {
         onNeutral={() => setCounterNeutral((prev) => prev + 1)}
         onBad={() => setCounterBad((prev) => prev + 1)}
         onReset={handleReset}
+        total={total}
       />
-      {feedbackGiven && <button onClick={handleReset}>Reset</button>}
-      {feedbackGiven ? (
+      {total > 0 ? (
         <Feedback
           counterGood={counterGood}
           counterNeutral={counterNeutral}
           counterBad={counterBad}
           positive={positive}
+          total={total}
         />
-      ) : <Notifications/>}
+      ) : (
+        <Notifications />
+      )}
     </div>
   );
 }
